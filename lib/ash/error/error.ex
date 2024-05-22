@@ -9,7 +9,8 @@ defmodule Ash.Error do
       framework: Ash.Error.Framework,
       unknown: Ash.Error.Unknown
     ],
-    unknown_error: Ash.Error.Unknown.UnknownError
+    unknown_error: Ash.Error.Unknown.UnknownError,
+    merge_with: [Reactor.Error]
 
   def to_ash_error(value, stacktrace \\ nil, opts \\ []) do
     value =
