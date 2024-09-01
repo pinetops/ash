@@ -1165,6 +1165,12 @@ defmodule Ash.Filter do
       value when is_list(value) ->
         Enum.map(value, &map(&1, func))
 
+      %MapSet{} = value ->
+        value
+        |> MapSet.to_list()
+        |> Enum.map(&map(&1, func))
+        |> MapSet.new()
+
       %BooleanExpression{left: left, right: right} = expr ->
         %{expr | left: map(left, func), right: map(right, func)}
 
